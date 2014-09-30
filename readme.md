@@ -1,6 +1,6 @@
 ### holla
 
-Make sure you have [Jekyll](jekyllrb.com) and [Grunt](gruntjs.com) installed.
+Make sure you have [Jekyll](http://jekyllrb.com) and [Grunt](http://gruntjs.com) installed.
 
 Run Jekyll:
 
