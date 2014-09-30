@@ -18,6 +18,15 @@ module.exports = function(grunt) {
       }
     },
 
+    // Coffee
+    coffee: {
+      compile: {
+        files: {
+          'js/app.js': 'js/app.coffee', // 1:1 compile
+        }
+      }
+    },
+
     // Autoprefixer
     autoprefixer: {
       no_dest: {
@@ -44,9 +53,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   // Run tasks
-  grunt.registerTask('default', ['sass', 'autoprefixer', 'watch']);
+  grunt.registerTask('default', ['sass', 'coffee', 'autoprefixer', 'watch']);
 
 
 };
