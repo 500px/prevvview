@@ -45,6 +45,12 @@ module.exports = function(grunt) {
           spawn: false,
         },
       },
+      coffee: {
+        files: [
+          'js/*'
+        ],
+        tasks: ['coffee'],
+      },
     },
 
   });
