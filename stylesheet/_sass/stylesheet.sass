@@ -1,2 +1,93 @@
-body
+@import '500px'
+
+=placeholder
+  &:-moz-placeholder
+    @content
+  &::-moz-placeholder
+    @content
+  &:-ms-input-placeholder
+    @content
+  &::-webkit-input-placeholder
+    @content
+
+=no_appearance()
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+
+*
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  // box-sizing: border-box
   margin: 0
+  padding: 0
+
+body, h1, h2, h3, h4, h5, h6, p, span, a
+  font-family: "Helvetica Neue", Arial, sans-serif
+  line-height: 1.4em
+
+body
+  padding-top: 40px
+
+.wrapper
+  max-width: 960px
+  padding: 0 10px
+  margin: 0 auto
+
+header
+  h1
+    font-size: 24px
+    font-weight: bold
+
+  h2
+    font-size: 14px
+    font-weight: 300
+
+.step_1
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translateY(-50%) translateX(-50%)
+  text-align: center
+
+  h1
+    font-size: 24px
+    margin-bottom: 10px
+
+  .photo_url
+    border: none
+    resize: none
+    outline: none
+
+    min-width: 500px
+    max-width: 100%
+
+    border-bottom: 1px solid #dbdbdb
+    padding: 10px
+
+    font-size: 26px
+    text-align: center
+
+    +no_appearance()
+    +placeholder
+      color: #dbdbdb
+      white-space: nowrap
+
+    &:focus
+      +no_appearance()
+
+  .suggestion
+    display: block
+    font-size: 16px
+    margin-top: 20px
+
+    a
+      text-decoration: none
+      color: $action-blue
+      &:hover
+        color: $action-blue-hover
+
+  .go
+    margin-top: 40px
+    min-width: 120px

@@ -1,0 +1,111 @@
+$action-blue: #0099e5 // $blue, $action
+$action-blue-hover: #02adea // $powerblue
+
+/* Button */
+
+.button
+  cursor: pointer
+  display: inline-block
+  padding: 0 10px
+  height: 30px
+  line-height: 28px
+  border-radius: 3px
+  font-weight: bold
+  color: #fff
+  text-decoration: none
+  background-color: #02adea
+  border: 1px solid #0099e5
+  text-shadow: 0px 1px 0px #0099e5
+  box-shadow: 0px 1px 0px rgba(255,255,255,0.15) inset
+  transition: background-color 0.1s ease-in-out
+
+  &:hover
+    background-color: #09bdfd
+
+  &.submit
+    background-color: #34bf49
+    border-color: #2fab41
+    text-shadow: 0px 1px 0px #2fab41
+    &:hover
+      background-color: #41cb56
+
+  &.secondary
+    background-color: #71767a
+    border-color: #585c61
+    text-shadow: 0px 1px 0px #585c61
+    &:hover
+      background-color: #83898e
+
+  &.tertiary
+    background-color: #b9c1c7
+    border-color: #9fa7ad
+    text-shadow: 0px 1px 0px #9fa7ad
+    &:hover
+      background-color: #c8cfd4
+
+  &.delete
+    background-color: #ff4c4c
+    border-color: #e02a35
+    text-shadow: 0px 1px 0px #e02a35
+    &:hover
+      background-color: #ff6469
+
+  &.large
+    min-width: 250px
+    height: 50px
+    text-align: center
+    line-height: 48px
+    font-size: 20px
+
+  &.medium
+    min-width: 180px
+    height: 40px
+    text-align: center
+    line-height: 38px
+    font-size: 16px
+
+  &.disabled
+    cursor: default
+    opacity: 0.5
+    &:hover
+      background-color: #02adea
+    &.submit:hover
+      background-color: #34bf49
+    &.secondary:hover
+      background-color: #71767a
+    &.tertiary:hover
+      background-color: #b9c1c7
+    &.delete:hover
+      background-color: #ff4c4c
+
+  &.on-image
+    border: none
+    box-shadow: 0px 1px 0px rgba(255,255,255,0.15) inset, 0px 1px 2px rgba(0,0,0,0.15)
+
+  &.full
+    width: 100%
+    text-align: center
+
+  & + .button
+    margin-left: 10px
+
+.pill
+  display: inline-block
+  background-color: #b9c1c7
+  line-height: 18px
+  font-size: 11px
+  font-weight: bold
+  text-transform: uppercase
+  text-align: center
+  padding: 0 5px
+  border-radius: 2px
+  color: #fff
+  transition: background-color 0.1s ease-in-out
+  &:hover
+    background-color: #02adea
+  &.action
+    background-color: $action-blue
+    &:hover
+      background-color: $action-blue-hover
+  & + .pill
+    margin-left: 10px
