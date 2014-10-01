@@ -15,6 +15,22 @@
   -moz-appearance: none
   appearance: none
 
+@keyframes slide_up
+  0%
+    opacity: 0
+    transform: translateY(10px)
+  100%
+    opacity: 1
+    transform: translateY(0px)
+
+@keyframes step_up
+  0%
+    opacity: 1
+    transform: translateY(-50%)
+  100%
+    opacity: 0
+    transform: translateY(-70%)
+
 *
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
@@ -29,13 +45,16 @@ body, h1, h2, h3, h4, h5, h6, p, span, a
 
 body
   padding-top: 40px
+  position: relative
+  padding: 0 20px
 
 .wrapper
   max-width: 960px
-  padding: 0 10px
   margin: 0 auto
 
 header
+  padding-top: 20px
+  position: absolute
   h1
     font-size: 24px
     font-weight: bold
@@ -45,11 +64,20 @@ header
     font-weight: 300
 
 .step_1
-  position: absolute
-  left: 50%
+  position: relative
   top: 50%
-  transform: translateY(-50%) translateX(-50%)
+  transform: translateY(-50%)
   text-align: center
+  transition: all 0.2s ease-in
+
+  &.invalid_url
+    .error
+      display: block
+      opacity: 1
+      transition: all 0.2s
+
+  &.animate_out
+    animation: step_up 0.4s forwards
 
   h1
     font-size: 24px
@@ -60,7 +88,7 @@ header
     resize: none
     outline: none
 
-    min-width: 500px
+    min-width: 550px
     max-width: 100%
 
     border-bottom: 1px solid #dbdbdb
@@ -91,3 +119,28 @@ header
   .go
     margin-top: 40px
     min-width: 120px
+    opacity: 0
+
+    &.hidden
+      display: none
+
+    &.animate_in
+      animation: slide_up 0.3s forwards
+
+  .error
+    display: none
+    opacity: 0
+    font-size: 14px
+    color: $action-red
+    margin-top: 20px
+
+@media only screen and (max-width: 600px)
+  .step_1
+    h1
+      font-size: 18px
+    .photo_url
+      min-width: 90%
+      font-size: 14px
+    .suggestion
+      font-size: 12px
+

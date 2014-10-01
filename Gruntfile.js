@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'js/app.js': 'js/app.coffee', // 1:1 compile
+          'js/app.js': 'js/coffee/app.coffee', // 1:1 compile
         }
       }
     },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
       },
       coffee: {
         files: [
-          'js/*'
+          'js/coffee/*'
         ],
         tasks: ['coffee'],
       },
