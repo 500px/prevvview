@@ -26,13 +26,21 @@ $(document).ready ->
       fetchPhoto()
     else
       $('.step_1').addClass('invalid_url')
+  
+  $('.links a').on 'click', (event) ->
+    event.preventDefault()
+    className = $(this).attr('href').replace('#', '')
+    $('.step_2').removeClass('fb ig li tw').addClass(className)
 
 fetchPhoto = ->
+  $('body').addClass('loading')
+
   photoId = $('.photo_url').val().match(/photos\/(\d+)/)[1]
 
   _500px.api "/photos/#{photoId}", (response) ->
+    $('body').removeClass('loading').addClass('step_2')
     if response.success
-      $('body').append("<img src='#{response.data.photo.image_url}' />")
+      $('.images').append($("<img class='photo' src='#{response.data.photo.image_url}' />"))
     else
       alert 'newp'
 
