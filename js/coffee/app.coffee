@@ -15,7 +15,7 @@ $(document).ready ->
     ), 10
 
   $('.example').on 'click', ->
-    $('.photo_url').val('https://prime.500px.com/photos/37790924')
+    $('.photo_url').val('https://prime.500px.com/photos/37790924').focus()
     $('.go').removeClass('hidden').addClass('animate_in')
 
   $('#url').on 'submit', (event) ->

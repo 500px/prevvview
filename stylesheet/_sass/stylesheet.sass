@@ -15,7 +15,17 @@
   -moz-appearance: none
   appearance: none
 
-@keyframes slide_up
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+  @-moz-keyframes #{$name}
+    @content
+  @-ms-keyframes #{$name}
+    @content
+  @keyframes #{$name}
+    @content
+
++keyframes(slide_up)
   0%
     opacity: 0
     transform: translateY(10px)
@@ -23,7 +33,7 @@
     opacity: 1
     transform: translateY(0px)
 
-@keyframes step_up
++keyframes(step_up)
   0%
     opacity: 1
     transform: translateY(-50%)
@@ -47,6 +57,16 @@ body
   padding-top: 40px
   position: relative
   padding: 0 20px
+  background-image: url('/assets/background.jpg')
+  background-size: cover
+
+.overlay
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  background-color: rgba(0, 0, 0, 0.25)
 
 .wrapper
   max-width: 960px
@@ -63,12 +83,17 @@ header
     font-size: 14px
     font-weight: 300
 
+  &.dark
+    h1, h2
+      color: #fff
+
 .step_1
   position: relative
   top: 50%
   transform: translateY(-50%)
   text-align: center
   transition: all 0.2s ease-in
+  color: #fff
 
   &.invalid_url
     .error
@@ -87,6 +112,7 @@ header
     border: none
     resize: none
     outline: none
+    background: none
 
     min-width: 550px
     max-width: 100%
@@ -96,11 +122,12 @@ header
 
     font-size: 26px
     text-align: center
+    color: #fff
 
     +no_appearance()
     +placeholder
-      color: #dbdbdb
       white-space: nowrap
+      color: #dbdbdb
 
     &:focus
       +no_appearance()
@@ -112,9 +139,9 @@ header
 
     a
       text-decoration: none
-      color: $action-blue
+      color: $action-blue-hover
       &:hover
-        color: $action-blue-hover
+        color: $action-blue
 
   .go
     margin-top: 40px
