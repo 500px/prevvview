@@ -19,8 +19,9 @@
       $('.photo_url').val('https://prime.500px.com/photos/37790924');
       return $('.go').removeClass('hidden').addClass('animate_in');
     });
-    return $('.go').on('click', function() {
+    return $('#url').on('submit', function(event) {
       var str;
+      event.preventDefault();
       str = $('.photo_url').val();
       if (str.match(/^https:\/\/prime.500px.com\/photos\/\d+/)) {
         return $('.step_1').addClass('animate_out');

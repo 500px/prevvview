@@ -17,7 +17,8 @@ $(document).ready ->
     $('.photo_url').val('https://prime.500px.com/photos/37790924')
     $('.go').removeClass('hidden').addClass('animate_in')
 
-  $('.go').on 'click', ->
+  $('#url').on 'submit', (event) ->
+    event.preventDefault()
     str = $('.photo_url').val()
     if str.match(/^https:\/\/prime.500px.com\/photos\/\d+/)
       $('.step_1').addClass('animate_out')
