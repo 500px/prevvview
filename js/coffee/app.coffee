@@ -30,6 +30,7 @@ $(document).ready ->
           $('.step_2').removeClass('hidden').addClass('animate_in')
           $('.overlay').addClass('light')
           $('header').addClass('dark')
+          $('body').on 'mousemove', parallaxMouseMove
           ), 400
       ), 400
     else
@@ -40,38 +41,36 @@ $(document).ready ->
     className = $(this).attr('href').replace('#', '')
     $('.step_2').removeClass('fb ig li tw').addClass(className)
 
-  # $('body').mousemove (e) ->
-  #   amountMovedX = (e.pageX * -1 / 100)
-  #   amountMovedY = (e.pageY * -1 / 100)
-  #   background_cap = 20
-  #   phone_cap = 5
-  #   if amountMovedX > background_cap
-  #     amountMovedX = background_cap
-  #   else if amountMovedX < -background_cap
-  #     amountMovedX = -background_cap
-  #   if amountMovedY > background_cap
-  #     amountMovedY = background_cap
-  #   else if amountMovedY < -background_cap
-  #     amountMovedY = -background_cap
-  #   $('.background').css({
-  #     '-webkit-transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
-  #     '-moz-transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
-  #     '-ms-transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
-  #     '-o-transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
-  #     'transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
-  #   })
-  #   if amountMovedX > phone_cap
-  #     amountMovedX = phone_cap
-  #   else if amountMovedX < -phone_cap
-  #     amountMovedX = -phone_cap
-  #   if amountMovedY > phone_cap
-  #     amountMovedY = phone_cap
-  #   else if amountMovedY < -phone_cap
-  #     amountMovedY = -phone_cap
-  #   $('.phone-hand').css({
+  $background = $('.background')
+  $foreground = $('.step_2')
 
-  #     })
+  BACKGROUND_DEPTH = 20
+  FOREGROUND_DEPTH = 10
 
+  $window = $(window)
+
+  windowWidth = windowHeight = 0
+
+  windowResize = ->
+    windowWidth = $window.width()
+    windowHeight = $window.height()
+
+  windowResize()
+
+  $window.on 'resize', windowResize
+
+  parallaxMouseMove = (e) ->
+    x = e.pageX
+    y = e.pageY
+
+    x = -((x / windowWidth) - 0.5)
+    y = -((y / windowHeight) - 0.5)
+
+    $background.css
+      transform: "translateX(#{Math.round(x * BACKGROUND_DEPTH)}px) translateY(#{Math.round(y * BACKGROUND_DEPTH)}px)"
+
+    $foreground.css
+      transform: "translateX(#{x * FOREGROUND_DEPTH}px) translateY(#{(y * FOREGROUND_DEPTH) + 10}px)"
 
 fetchPhoto = ->
   $('body').addClass('loading')
