@@ -226,9 +226,9 @@ body {
   height: 610px;
   bottom: 0;
   left: 50%;
-  -webkit-transform: translateX(-37%);
-      -ms-transform: translateX(-37%);
-          transform: translateX(-37%);
+  -webkit-transform: translateX(-32%);
+      -ms-transform: translateX(-32%);
+          transform: translateX(-32%);
   z-index: -100; }
 
 .phone {
@@ -245,26 +245,6 @@ body {
   position: absolute;
   background-size: cover;
   background-repeat: no-repeat; }
-  .prime-photo.fb {
-    top: 193px;
-    left: 81px;
-    width: 176px;
-    height: 93px; }
-  .prime-photo.ig {
-    top: 193px;
-    left: 81px;
-    width: 176px;
-    height: 93px; }
-  .prime-photo.li {
-    top: 193px;
-    left: 81px;
-    width: 176px;
-    height: 93px; }
-  .prime-photo.tw {
-    top: 193px;
-    left: 81px;
-    width: 176px;
-    height: 93px; }
 
 .hidden {
   display: none; }
@@ -272,15 +252,22 @@ body {
 header {
   padding-top: 20px;
   position: absolute;
-  z-index: 15; }
+  z-index: 15;
+  color: #fff; }
   header h1 {
     font-size: 24px;
-    font-weight: bold; }
+    font-weight: bold;
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s; }
   header h2 {
     font-size: 14px;
-    font-weight: 300; }
+    font-weight: 300;
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s; }
   header.dark h1, header.dark h2 {
-    color: #fff; }
+    color: #000;
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s; }
 
 .step_1 {
   position: relative;
@@ -359,6 +346,19 @@ header {
     color: #ff4c4c;
     margin-top: 20px; }
 
+.links {
+  position: absolute;
+  left: -220px;
+  bottom: 360px;
+  width: 100px; }
+  .links a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    margin: 20px 0;
+    display: block;
+    text-align: right; }
+
 .step_2 {
   opacity: 0;
   position: absolute;
@@ -370,6 +370,51 @@ header {
   .step_2.animate_in {
     -webkit-animation: animate_hand 0.75s forwards;
             animation: animate_hand 0.75s forwards; }
+  .step_2.fb .instagram, .step_2.fb .linkedin, .step_2.fb .twitter {
+    display: none; }
+  .step_2.fb .facebook {
+    display: block; }
+  .step_2.fb .prime-photo {
+    top: 193px;
+    left: 81px;
+    width: 176px;
+    height: 93px; }
+  .step_2.fb .links a.fb {
+    font-weight: bold; }
+  .step_2.ig .facebook, .step_2.ig .linkedin, .step_2.ig .twitter {
+    display: none; }
+  .step_2.ig .instagram {
+    display: block; }
+  .step_2.ig .prime-photo {
+    top: 131px;
+    left: 68px;
+    width: 202px;
+    height: 202px; }
+  .step_2.ig .links a.ig {
+    font-weight: bold; }
+  .step_2.li .instagram, .step_2.li .facebook, .step_2.li .twitter {
+    display: none; }
+  .step_2.li .linkedin {
+    display: block; }
+  .step_2.li .prime-photo {
+    top: 232px;
+    left: 79px;
+    width: 81px;
+    height: 44px; }
+  .step_2.li .links a.li {
+    font-weight: bold; }
+  .step_2.tw .facebook, .step_2.tw .linkedin, .step_2.tw .instagram {
+    display: none; }
+  .step_2.tw .twitter {
+    display: block; }
+  .step_2.tw .prime-photo {
+    top: 214px;
+    left: 107px;
+    width: 129px;
+    height: 52px;
+    border-radius: 2px; }
+  .step_2.tw .links a.tw {
+    font-weight: bold; }
 
 @media only screen and (max-width: 600px) {
   .step_1 h1 {

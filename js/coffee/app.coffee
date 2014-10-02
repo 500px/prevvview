@@ -29,6 +29,7 @@ $(document).ready ->
         setTimeout (->
           $('.step_2').removeClass('hidden').addClass('animate_in')
           $('.overlay').addClass('light')
+          $('header').addClass('dark')
           ), 400
       ), 400
     else
