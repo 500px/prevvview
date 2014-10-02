@@ -24,13 +24,53 @@ $(document).ready ->
     if str.match(/^https:\/\/prime.500px.com\/photos\/\d+/)
       $('.step_1').addClass('animate_out')
       fetchPhoto()
+      setTimeout (->
+        $('.step_1').addClass('hidden')
+        setTimeout (->
+          $('.step_2').removeClass('hidden').addClass('animate_in')
+          $('.overlay').addClass('light')
+          ), 400
+      ), 400
     else
       $('.step_1').addClass('invalid_url')
-  
+
   $('.links a').on 'click', (event) ->
     event.preventDefault()
     className = $(this).attr('href').replace('#', '')
     $('.step_2').removeClass('fb ig li tw').addClass(className)
+
+  # $('body').mousemove (e) ->
+  #   amountMovedX = (e.pageX * -1 / 100)
+  #   amountMovedY = (e.pageY * -1 / 100)
+  #   background_cap = 20
+  #   phone_cap = 5
+  #   if amountMovedX > background_cap
+  #     amountMovedX = background_cap
+  #   else if amountMovedX < -background_cap
+  #     amountMovedX = -background_cap
+  #   if amountMovedY > background_cap
+  #     amountMovedY = background_cap
+  #   else if amountMovedY < -background_cap
+  #     amountMovedY = -background_cap
+  #   $('.background').css({
+  #     '-webkit-transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
+  #     '-moz-transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
+  #     '-ms-transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
+  #     '-o-transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
+  #     'transform' : 'translateX(' + amountMovedX + 'px) translateY(' + amountMovedY + 'px)',
+  #   })
+  #   if amountMovedX > phone_cap
+  #     amountMovedX = phone_cap
+  #   else if amountMovedX < -phone_cap
+  #     amountMovedX = -phone_cap
+  #   if amountMovedY > phone_cap
+  #     amountMovedY = phone_cap
+  #   else if amountMovedY < -phone_cap
+  #     amountMovedY = -phone_cap
+  #   $('.phone-hand').css({
+
+  #     })
+
 
 fetchPhoto = ->
   $('body').addClass('loading')
@@ -38,9 +78,9 @@ fetchPhoto = ->
   photoId = $('.photo_url').val().match(/photos\/(\d+)/)[1]
 
   _500px.api "/photos/#{photoId}", (response) ->
-    $('body').removeClass('loading').addClass('step_2')
+    $('body').removeClass('loading')
     if response.success
-      $('.images').append($("<img class='photo' src='#{response.data.photo.image_url}' />"))
+      $('.prime-photo').css('background-image', "url(#{response.data.photo.image_url})")
+      $('.prime-photo').addClass('fb')
     else
-      alert 'newp'
-
+      alert 'Error'

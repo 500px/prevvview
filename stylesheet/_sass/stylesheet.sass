@@ -41,6 +41,14 @@
     opacity: 0
     transform: translateY(-70%)
 
++keyframes(animate_hand)
+  0%
+    opacity: 0
+    bottom: -10px
+  100%
+    opacity: 1
+    bottom: 0
+
 *
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
@@ -57,8 +65,18 @@ body
   padding-top: 40px
   position: relative
   padding: 0 20px
+  overflow: hidden
+
+.background
   background-image: url('/assets/background.jpg')
   background-size: cover
+  background-repeat: no-repeat
+  position: absolute
+  left: -10px
+  top: -10px
+  right: -10px
+  bottom: -10px
+  z-index: 5
 
 .overlay
   position: absolute
@@ -67,14 +85,74 @@ body
   top: 0
   bottom: 0
   background-color: rgba(0, 0, 0, 0.25)
+  transition: all 0.4s
+  z-index: 10
+
+  &.light
+    background-color: rgba(0, 0, 0, 0)
+    transition: all 0.4s
 
 .wrapper
   max-width: 960px
   margin: 0 auto
+  z-index: 15
+
+.phone-hand
+  position: absolute
+  width: 480px
+  height: 610px
+  bottom: 0
+  left: 50%
+  transform: translateX(-37%)
+  z-index: -100
+
+.phone
+  position: absolute
+  width: 480px
+
+.app-image
+  position: absolute
+  width: 202px
+  top: 60px
+  left: 68px
+
+.prime-photo
+  position: absolute
+  background-size: cover
+  background-repeat: no-repeat
+
+  &.fb
+    top: 193px
+    left: 81px
+    width: 176px
+    height: 93px
+
+  &.ig
+    top: 193px
+    left: 81px
+    width: 176px
+    height: 93px
+
+  &.li
+    top: 193px
+    left: 81px
+    width: 176px
+    height: 93px
+
+  &.tw
+    top: 193px
+    left: 81px
+    width: 176px
+    height: 93px
+
+.hidden
+  display: none
 
 header
   padding-top: 20px
   position: absolute
+  z-index: 15
+
   h1
     font-size: 24px
     font-weight: bold
@@ -92,14 +170,14 @@ header
   top: 50%
   transform: translateY(-50%)
   text-align: center
-  transition: all 0.2s ease-in
+  transition: all 0.4s ease-in
   color: #fff
 
   &.invalid_url
     .error
       display: block
       opacity: 1
-      transition: all 0.2s
+      transition: all 0.4s
 
   &.animate_out
     animation: step_up 0.4s forwards
@@ -127,7 +205,7 @@ header
     +no_appearance()
     +placeholder
       white-space: nowrap
-      color: #dbdbdb
+      color: rgba(255, 255, 255, 0.3)
 
     &:focus
       +no_appearance()
@@ -152,7 +230,7 @@ header
       display: none
 
     &.animate_in
-      animation: slide_up 0.3s forwards
+      animation: slide_up 0.4s forwards
 
   .error
     display: none
@@ -160,6 +238,18 @@ header
     font-size: 14px
     color: $action-red
     margin-top: 20px
+
+.step_2
+  opacity: 0
+  position: absolute
+  left: 50%
+  transform: translateX(-50%)
+  bottom: -20px
+
+  &.animate_in
+    animation: animate_hand 0.75s forwards
+    // animation-delay: 0.5s
+
 
 @media only screen and (max-width: 600px)
   .step_1
