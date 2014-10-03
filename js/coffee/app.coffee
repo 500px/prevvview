@@ -22,7 +22,8 @@ $(document).ready ->
     event.preventDefault()
     str = $('.photo_url').val()
     if str.match(/^https:\/\/prime.500px.com\/photos\/\d+/)
-      $('.step_1').addClass('animate_out')
+      $('.step_1').addClass('animate_out').removeClass('animate_in')
+      $('.buy .button').attr('href', str)
       fetchPhoto()
       setTimeout (->
         $('.step_1').addClass('hidden')
@@ -33,6 +34,9 @@ $(document).ready ->
           $('body').on 'mousemove', parallaxMouseMove
           ), 400
       ), 400
+      setTimeout (->
+        $('.step_1, .step_2').removeClass('animate_out animate_in')
+      ), 2000
     else
       $('.step_1').addClass('invalid_url')
 
@@ -40,6 +44,22 @@ $(document).ready ->
     event.preventDefault()
     className = $(this).attr('href').replace('#', '')
     $('.step_2').removeClass('fb ig li tw').addClass(className)
+
+  $('.back').on 'click', ->
+    $('.step_2').addClass('animate_out')
+    $('.overlay').removeClass('light')
+    $('header').removeClass('dark')
+    setTimeout (->
+      $('.photo_url').val('')
+      $('.go').addClass('hidden')
+      $('.step_2').addClass('hidden')
+      $('.step_1').removeClass('hidden').addClass('animate_in')
+    ), 400
+    setTimeout (->
+      $('.step_2').removeClass('animate_out animate_in')
+      $('.step_1').removeClass('invalid_url')
+      $('body').off 'mousemove', parallaxMouseMove
+    ), 400
 
   $background = $('.background')
   $foreground = $('.step_2')
