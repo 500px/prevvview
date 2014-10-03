@@ -62,9 +62,12 @@
     }
   });
 
-  $background = $('.background');
+  $background = $foreground = null;
 
-  $foreground = $('.step_2');
+  $(function() {
+    $background = $('.background');
+    return $foreground = $('.step_2');
+  });
 
   BACKGROUND_DEPTH = 20;
 
