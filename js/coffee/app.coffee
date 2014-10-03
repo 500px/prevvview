@@ -51,9 +51,11 @@ $(document).ready ->
   if window.location.hash.match(/#\d+/)
     fetchPhoto(window.location.hash.replace('#', ''))
 
+$background = $foreground = null
 
-$background = $('.background')
-$foreground = $('.step_2')
+$ ->
+  $background = $('.background')
+  $foreground = $('.step_2')
 
 BACKGROUND_DEPTH = 20
 FOREGROUND_DEPTH = 10
