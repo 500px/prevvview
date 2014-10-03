@@ -22,21 +22,8 @@ $(document).ready ->
     event.preventDefault()
     str = $('.photo_url').val()
     if str.match(/^https:\/\/prime.500px.com\/photos\/\d+/)
-      $('.step_1').addClass('animate_out').removeClass('animate_in')
-      $('.buy .button').attr('href', str)
-      fetchPhoto()
-      setTimeout (->
-        $('.step_1').addClass('hidden')
-        setTimeout (->
-          $('.step_2').removeClass('hidden').addClass('animate_in')
-          $('.overlay').addClass('light')
-          $('header').addClass('dark')
-          $('body').on 'mousemove', parallaxMouseMove
-          ), 400
-      ), 400
-      setTimeout (->
-        $('.step_1, .step_2').removeClass('animate_out animate_in')
-      ), 2000
+      fetchPhoto(str.match(/\/photos\/(\d+)/)[1])
+
     else
       $('.step_1').addClass('invalid_url')
 
@@ -61,42 +48,44 @@ $(document).ready ->
       $('body').off 'mousemove', parallaxMouseMove
     ), 400
 
-  $background = $('.background')
-  $foreground = $('.step_2')
+  if window.location.hash.match(/#\d+/)
+    fetchPhoto(window.location.hash.replace('#', ''))
 
-  BACKGROUND_DEPTH = 20
-  FOREGROUND_DEPTH = 10
 
-  $window = $(window)
+$background = $('.background')
+$foreground = $('.step_2')
 
-  windowWidth = windowHeight = 0
+BACKGROUND_DEPTH = 20
+FOREGROUND_DEPTH = 10
 
-  windowResize = ->
-    windowWidth = $window.width()
-    windowHeight = $window.height()
+$window = $(window)
 
+windowWidth = windowHeight = 0
+
+windowResize = ->
+  windowWidth = $window.width()
+  windowHeight = $window.height()
+
+$ ->
   windowResize()
 
-  $window.on 'resize', windowResize
+$window.on 'resize', windowResize
 
-  parallaxMouseMove = (e) ->
-    x = e.pageX
-    y = e.pageY
+parallaxMouseMove = (e) ->
+  x = e.pageX
+  y = e.pageY
 
-    x = -((x / windowWidth) - 0.5)
-    y = -((y / windowHeight) - 0.5)
+  x = -((x / windowWidth) - 0.5)
+  y = -((y / windowHeight) - 0.5)
 
-    $background.css
-      transform: "translateX(#{Math.round(x * BACKGROUND_DEPTH)}px) translateY(#{Math.round(y * BACKGROUND_DEPTH)}px)"
+  $background.css
+    transform: "translateX(#{Math.round(x * BACKGROUND_DEPTH)}px) translateY(#{Math.round(y * BACKGROUND_DEPTH)}px)"
 
-    $foreground.css
-      transform: "translateX(#{x * FOREGROUND_DEPTH}px) translateY(#{(y * FOREGROUND_DEPTH) + 10}px)"
+  $foreground.css
+    transform: "translateX(#{x * FOREGROUND_DEPTH}px) translateY(#{(y * FOREGROUND_DEPTH) + 10}px)"
 
-fetchPhoto = ->
-  $('body').addClass('loading')
 
-  photoId = $('.photo_url').val().match(/photos\/(\d+)/)[1]
-
+fetchPhoto = (photoId) ->
   _500px.api "/photos/#{photoId}", (response) ->
     $('body').removeClass('loading')
     if response.success
@@ -104,3 +93,24 @@ fetchPhoto = ->
       $('.prime-photo').addClass('fb')
     else
       alert 'Error'
+
+  $('.step_1').addClass('animate_out').removeClass('animate_in')
+  $('.buy .button').attr('href', "https://prime.500px.com/photos/#{photoId}")
+
+  setTimeout (->
+    $('.step_1').addClass('hidden')
+    setTimeout (->
+      $('.step_2').removeClass('hidden').addClass('animate_in')
+      $('.overlay').addClass('light')
+      $('header').addClass('dark')
+      $('body').on 'mousemove', parallaxMouseMove
+      ), 400
+  ), 400
+  setTimeout (->
+    $('.step_1, .step_2').removeClass('animate_out animate_in')
+  ), 2000
+
+  $('body').addClass('loading')
+
+  window.location.hash = "#{photoId}"
+
