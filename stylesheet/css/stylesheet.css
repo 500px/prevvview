@@ -438,7 +438,8 @@ header {
   bottom: 0px; }
   .step_2 .prime-photo {
     -webkit-transition: all 0.2s;
-            transition: all 0.2s; }
+            transition: all 0.2s;
+    background-position: center center; }
   .step_2.animate_in {
     -webkit-animation: animate_hand 0.75s forwards;
             animation: animate_hand 0.75s forwards; }
